@@ -3,6 +3,7 @@ package com.example.news.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+
 public class Source {
 
     @SerializedName("id")
@@ -12,6 +13,7 @@ public class Source {
     @SerializedName("name")
     @Expose
     private String name;
+
 
     public String getId() {
         return id;

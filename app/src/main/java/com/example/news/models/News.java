@@ -19,27 +19,28 @@ public class News {
     @Expose
     private List<Article> article;
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setTotalResult(int totalResult) {
-        this.totalResult = totalResult;
-    }
-
-    public void setArticle(List<Article> article) {
-        this.article = article;
-    }
-
     public String getStatus() {
         return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getTotalResult() {
         return totalResult;
     }
 
+    public void setTotalResult(int totalResult) {
+        this.totalResult = totalResult;
+    }
+
     public List<Article> getArticle() {
         return article;
     }
+
+    public void setArticle(List<Article> article) {
+        this.article = article;
+    }
+
 }

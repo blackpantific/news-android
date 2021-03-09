@@ -28,18 +28,19 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
+
+public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>{
 
     private List<Article> articles;
     private Context context;
-    private  OnItemClickListener onItemClickListener;
+    private OnItemClickListener onItemClickListener;
+
 
     public Adapter(List<Article> articles, Context context) {
         this.articles = articles;
         this.context = context;
     }
 
-    // возвращает объект ViewHolder, который будет хранить данные по одному объекту Phone
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -47,11 +48,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         return new MyViewHolder(view, onItemClickListener);
     }
 
-    //выполняет привязку объекта ViewHolder к объекту N по определенной позиции
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holders, int position) {
-            final MyViewHolder holder = holders;
-            Article model = articles.get(position);
+        final MyViewHolder holder = holders;
+        Article model = articles.get(position);
 
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(Utils.getRandomDrawbleColor());
@@ -81,40 +81,36 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         holder.title.setText(model.getTitle());
         holder.desc.setText(model.getDescription());
         holder.source.setText(model.getSource().getName());
-        holder.time.setText("\u2022" + Utils.DateToTimeFormat(model.getPublishedAt()));
+        holder.time.setText(" \u2022 " + Utils.DateToTimeFormat(model.getPublishedAt()));
         holder.published_ad.setText(Utils.DateFormat(model.getPublishedAt()));
         holder.author.setText(model.getAuthor());
 
-
     }
 
-
-
-    //возвращает количество объектов в списке
     @Override
     public int getItemCount() {
         return articles.size();
     }
 
-    public void setInOtemClickListener(OnItemClickListener onItemClickListener){
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
         this.onItemClickListener = onItemClickListener;
     }
 
-
-    public interface OnItemClickListener{
-        void onItemclick(View view, int position);
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener {
 
         TextView title, desc, author, published_ad, source, time;
         ImageView imageView;
         ProgressBar progressBar;
         OnItemClickListener onItemClickListener;
 
-        public MyViewHolder(@NonNull View itemView, OnItemClickListener onItemClickListener)
-        {
+        public MyViewHolder(View itemView, OnItemClickListener onItemClickListener) {
+
             super(itemView);
+
             itemView.setOnClickListener(this);
             title = itemView.findViewById(R.id.title);
             desc = itemView.findViewById(R.id.desc);
@@ -126,14 +122,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             progressBar = itemView.findViewById(R.id.prograss_load_photo);
 
             this.onItemClickListener = onItemClickListener;
+
         }
 
         @Override
         public void onClick(View v) {
-            onItemClickListener.onItemclick(v, getAdapterPosition());
+            onItemClickListener.onItemClick(v, getAdapterPosition());
         }
     }
-
-
 
 }
